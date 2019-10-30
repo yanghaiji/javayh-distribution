@@ -84,8 +84,18 @@ CREATE TABLE `sys_role_menu`  (
 -- ----------------------------
 -- Records of sys_role_menu
 -- ----------------------------
-INSERT INTO `sys_role_menu` VALUES (1, 1, 1);
-INSERT INTO `sys_role_menu` VALUES (2, 1, 10);
+INSERT INTO `sys_role_menu` VALUES ('1', '1', '1');
+INSERT INTO `sys_role_menu` VALUES ('2', '1', '10');
+INSERT INTO `sys_role_menu` VALUES ('3', '1', '2');
+INSERT INTO `sys_role_menu` VALUES ('4', '1', '3');
+INSERT INTO `sys_role_menu` VALUES ('5', '1', '4');
+INSERT INTO `sys_role_menu` VALUES ('6', '1', '5');
+INSERT INTO `sys_role_menu` VALUES ('7', '1', '6');
+INSERT INTO `sys_role_menu` VALUES ('8', '1', '7');
+INSERT INTO `sys_role_menu` VALUES ('9', '1', '8');
+INSERT INTO `sys_role_menu` VALUES ('10', '1', '9');
+INSERT INTO `sys_role_menu` VALUES ('11', '1', '11');
+INSERT INTO `sys_role_menu` VALUES ('12', '1', '12');
 
 -- ----------------------------
 -- Table structure for sys_role_user
