@@ -1,0 +1,29 @@
+server:
+  port: 8001
+## producer配置
+spring:
+  application:
+    name: javayh-api
+  #禁用模板引擎的缓存
+  thymeleaf:
+    cache: false
+    mode: HTML
+  datasource:
+    url: jdbc:mysql://localhost:3306/db1?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: root
+    driverClassName: com.mysql.jdbc.Driver
+mybatis:
+  type-aliases-package: com.javayh.conf
+  configuration:
+    map-underscore-to-camel-case: true  #开启驼峰命名,l_name -> lName
+    jdbc-type-for-null: NULL
+    lazy-loading-enabled: true
+    aggressive-lazy-loading: true
+    cache-enabled: true #开启二级缓存
+    call-setters-on-nulls: true #map空列不显示问题
+  mapper-locations: classpath:mapper/*.xml
+
+logging:
+  level:
+    com.javayh.conf.mapper: DEBUG

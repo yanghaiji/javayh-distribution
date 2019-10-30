@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javayh.conf.mapper.UserMapper">
+
+<resultMap type="com.javayh.conf.dto.SysUserDTO" id="withrole">
+	<id column="id" property="id"/>
+	<result column="user_name" property="userName"/>
+	<result column="pass_word" property="passWord"/>
+	<result column="email" property="email"/>
+	<result column="active"  property="active"/>
+	<result column="status"  property="status"/>
+	<result column="try_count"  property="tryCount"/>
+	<collection property="roles" ofType="com.javayh.conf.dto.RoleDTO">
+		<id column="roleId" property="id"/>
+		<result column="roleName"  property="roleName"/>
+	</collection>
+</resultMap>
+
+	<!-- 查询用户信息 -->
+	<select id="selectUserByName" resultMap="withrole" parameterType="String">
+		select u.*
+		,r.id as roleId
+		,r.role_name as roleName
+		from sys_user u
+        LEFT JOIN sys_role_user sru on u.id= sru.sys_user_id
+        LEFT JOIN sys_role r on sru.sys_role_id=r.id
+        where user_name= #{username}
+	</select>
+
+	<select id="selectRoleByName" resultType="com.javayh.conf.vo.UserNameRoleVO">
+		SELECT
+			rous.sys_role_id as id,
+			ro.role_name as roleName
+		FROM
+			sys_user us
+			LEFT JOIN sys_role_user rous on rous.sys_user_id = us.id
+			LEFT JOIN sys_role ro on ro.id = rous.sys_role_id
+		WHERE
+			us.user_name = #{userName}
+	</select>
+
+	<select id="selectRoleIdByName" resultType="String">
+		SELECT
+			rous.sys_role_id as id
+		FROM
+			sys_user us
+			LEFT JOIN sys_role_user rous on rous.sys_user_id = us.id
+		WHERE
+			us.user_name = #{userName}
+	</select>
+
+</mapper>
