@@ -38,14 +38,14 @@
                 <tbody id="x-link">
                     <tr  th:each="user:${pageInfo.list}">
                      	<td class="center" th:text="${user.id}" ></td>
-						<td class="center" th:text="${user.username}"></td>
-						<td class="center">[[${#dates.format(user.createdate, 'dd/MMM/yyyy HH:mm')}]]</td>
+						<td class="center" th:text="${user.userName}"></td>
+						<td class="center">[[${#dates.format(user.createDate, 'dd/MMM/yyyy HH:mm')}]]</td>
 						 <td class="center">
 							<span class="center">[[${user.email}]]</span>
 						</td>
 						
 						<td class="center">
-							<span class="layui-btn layui-btn-normal">[[${user.Active}]]</span>
+							<span class="layui-btn layui-btn-normal">[[${user.active}]]</span>
 						</td>
 						<td class="center">
 							<a class="layui-btn layui-btn-warm" href="">

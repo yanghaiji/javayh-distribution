@@ -1,6 +1,9 @@
 package com.javayh.conf.service;
 
 import com.javayh.conf.dto.SysUserDTO;
+import com.javayh.conf.entity.SysUser;
+
+import java.util.List;
 
 public interface UserService {
 
@@ -14,4 +17,9 @@ public interface UserService {
 	 */
 	SysUserDTO getUserByName(String username);
 
+	/**
+	 * 查询用户
+	 * @return
+	 */
+    List<SysUser> getAllPageUser();
 }

@@ -49,4 +49,14 @@
 			us.user_name = #{userName}
 	</select>
 
+	<select id="getAllPageUser"  resultType="com.javayh.conf.entity.SysUser">
+		SELECT
+			id,user_name as userName,pass_word as passWord,
+			email,active
+		FROM
+		sys_user
+		ORDER BY create_date DESC
+
+	</select>
+
 </mapper>

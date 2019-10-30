@@ -2,6 +2,7 @@ package com.javayh.conf.mapper;
 
 
 import com.javayh.conf.dto.SysUserDTO;
+import com.javayh.conf.entity.SysUser;
 import com.javayh.conf.vo.UserNameRoleVO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -40,4 +41,6 @@ public interface UserMapper {
      * @return java.util.List<java.lang.String>
      */
     List<String> selectRoleIdByName(String userName);
+
+	List<SysUser> getAllPageUser();
 }

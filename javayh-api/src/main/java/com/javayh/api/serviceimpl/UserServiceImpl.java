@@ -36,4 +36,9 @@ public class UserServiceImpl implements UserService {
 		return userMapper.selectUserByName(username);
 	}
 
+	@Override
+	public List<SysUser> getAllPageUser() {
+		return  userMapper.getAllPageUser();
+	}
+
 }
