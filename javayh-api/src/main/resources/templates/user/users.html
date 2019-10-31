@@ -23,7 +23,7 @@
         <div class="x-body">
         
         
-        <xblock><button class="layui-btn" onclick="member_add('添加用户','/touser/adduser','550','400')"><i class="layui-icon">&#xe608;</i>添加</button><span class="x-right" style="line-height:40px">总 [[${pageInfo.total } ]]条记录</span></xblock>
+        <xblock><button class="layui-btn" onclick="member_add('添加用户','/javayh/adduser','550','400')"><i class="layui-icon">&#xe608;</i>添加</button><span class="x-right" style="line-height:40px">总 [[${pageInfo.total } ]]条记录</span></xblock>
             <table class="layui-table">
                 <thead>
                     <tr>
@@ -103,15 +103,10 @@
 		                ,jump : function(obj, first){
 		                	if (!first) {
 		                	     var pn=obj.curr;
-		                	    window.location.href="/touser/alluser_admin?pn="+pn;//跳转链接
+		                	    window.location.href="/javayh/alluser_admin?pn="+pn;//跳转链接
 		                	    }
 		                }	
-		                
-		                
 		              }); 
-                 
-		              
-              
           })
 
           
@@ -149,7 +144,7 @@
              	 layer.confirm('确认要删除吗？',function(index){
                     //发异步删除数据
                     $.ajax({
-                    	url: basePath+'/touser/user?id=' +id,
+                    	url: basePath+'/javayh/user?id=' +id,
                     	type: 'DELETE',
                     	dataType: 'json',
                     	async: false,

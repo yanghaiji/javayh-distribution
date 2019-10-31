@@ -45,7 +45,7 @@ public class LoginController {
 		String username=request.getUserPrincipal().getName();
 		List<TreeNode> list = sysMenuService.findList(UserUtils.getRoleId(request));
 		log.info("登录用户{}",username);
-		model.addAttribute("barlist", list);
+		model.addAttribute("menulist", list);
 		model.addAttribute("username", username);
 		return "index";
 	}

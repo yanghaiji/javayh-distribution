@@ -20,7 +20,7 @@ import java.util.List;
  * @date 2019-10-30 23:22
  */
 @Controller
-@RequestMapping("/touser")
+@RequestMapping("/javayh")
 public class UserController {
 
     @Autowired

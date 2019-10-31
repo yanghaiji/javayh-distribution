@@ -95,7 +95,7 @@
                 //发异步，把数据提交给后台
                 var info;
                 $.ajax({
-                	url: '/touser/user',
+                	url: '/javayh/user',
                 	type: 'POST',
                 	data: $("#jsonuserdata form").serialize(),//jquery的序列化表单
                 	async: false,//默认true 即异步  请求未结束 ajax后面的内容均会执行   但是false下，只有得到success执行成功后面的才会继续判断

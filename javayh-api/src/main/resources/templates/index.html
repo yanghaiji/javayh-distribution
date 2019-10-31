@@ -25,9 +25,6 @@
 				</div>
 			</div>
             <ul class="layui-nav layui-layout-left layui-ygyd-menu" style="position:absolute; left:250px;">
-        <li class="layui-nav-item">您拥有的角色：</li>
-       <li class="layui-nav-item"><span sec:authentication="principal.authorities"></span></li>
-      
     </ul>
     
       <ul class="layui-nav" lay-filter="">
@@ -49,11 +46,11 @@
     <div class="layui-side-scroll">
       <ul class="layui-nav layui-nav-tree site-demo-nav" lay-filter="side">
       
-        <li class="layui-nav-item" th:each="bar:${barlist}"> <a class="javascript:;" href="javascript:;"> <i class="layui-icon" style="top: 3px;">&#xe613;</i><cite>[[${bar.menuName}]]</cite> </a>
+        <li class="layui-nav-item" th:each="menu:${menulist}"> <a class="javascript:;" href="javascript:;"> <i class="layui-icon" style="top: 3px;">&#xe613;</i><cite>[[${menu.menuName}]]</cite> </a>
           <dl class="layui-nav-child">
-            <dd class=""    th:each="smbar:${bar.treeNodeList}">
-             <a href="javascript:;" th:if="${#strings.contains(smbar.url,'_')}"   th:_href="@{/touser}+${smbar.url}"> <cite >[[${smbar.menuName}]]</cite> </a>
-             <a href="javascript:;" th:if="${#strings.contains(smbar.url,'=')}"   th:_href="@{/touser}+${smbar.url}+${username}"> <cite >[[${smbar.menuName}]]</cite> </a>
+            <dd class=""    th:each="smbar:${menu.treeNodeList}">
+             <a href="javascript:;" th:if="${#strings.contains(smbar.url,'_')}"   th:_href="@{/javayh}+${smbar.url}"> <cite >[[${smbar.menuName}]]</cite> </a>
+             <a href="javascript:;" th:if="${#strings.contains(smbar.url,'=')}"   th:_href="@{/javayh}+${smbar.url}+${username}"> <cite >[[${smbar.menuName}]]</cite> </a>
             </dd>
            
           </dl>

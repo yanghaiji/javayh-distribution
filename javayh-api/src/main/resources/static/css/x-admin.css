@@ -9,7 +9,7 @@
 .site-content{width: 899px; min-height: 900px; padding: 20px 0 10px 20px;}
 
 /* 头部 */
-.layui-layout-admin .header{height: 55px; border-bottom: 5px solid #2299ee;  background-color: #393D49; color: #fff;}
+.layui-layout-admin .header{height: 55px;border-bottom: 5px solid 	#FFFFFF;background-color: #636363;color: #fff;}
 .header-demo .layui-nav .layui-this:after, .header-demo .layui-nav-bar { background-color: #393D49;}
 .layui-layout-admin .layui-side{ top: 60px;}
 
@@ -91,7 +91,7 @@ background:none;}
 .header-index{background-color: #080018; border: none;}
 .logo{left: 40px;font-size: 28px;color: #fff;line-height: 60px;margin-left:10px;}
 .admin-logo-box{width:185px;height:57px;position:relative}
-.larry-side-menu{position:absolute;cursor:pointer;z-index:19940201;left:200px;color:#fff;text-align:center;width:30px;height:30px;background-color:#29e;line-height:30px;top:23%}
+.larry-side-menu{position:absolute;cursor:pointer;z-index:19940201;left:200px;color:#fff;text-align:center;width:30px;height:30px;background-color:	#636363;line-height:30px;top:23%}
 .larry-side-menu:hover{background-color:#0c7fd1}
 
 .layui-larry-menu{width:auto;height:60px;position:absolute;left:245px;top:0}
@@ -204,8 +204,8 @@ body .site-tips p{margin: 0;}
 .site-dir{display: none;}
 .site-dir li{line-height: 26px; margin-left: 20px; overflow: visible; list-style-type: disc;}
 .site-dir li a{display: block;}
-.site-dir li a:active{color: #01AAED;}
-.site-dir li a.layui-this{color: #01AAED;}
+.site-dir li a:active{color: #00EE76;}
+.site-dir li a.layui-this{color: #00EE76;}
 body .layui-layer-dir{box-shadow: none; border: 1px solid #d2d2d2;}
 body .layui-layer-dir .layui-layer-content{padding: 10px; max-height: 280px; overflow: auto;}
 .site-dir a em{padding-left: 5px; font-size: 12px; color: #c2c2c2; font-style: normal;}
