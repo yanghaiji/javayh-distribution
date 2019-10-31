@@ -1,6 +1,7 @@
 package com.javayh.conf.mapper;
 
 
+import com.javayh.common.mybatis.mapper.BaseMapper;
 import com.javayh.conf.dto.SysUserDTO;
 import com.javayh.conf.entity.SysUser;
 import com.javayh.conf.vo.UserNameRoleVO;
@@ -9,7 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface UserMapper {
+public interface UserMapper extends BaseMapper<SysUser> {
 
 	/**
 	 * @Description 根据用户名查询用户信息

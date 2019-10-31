@@ -39,14 +39,14 @@
     <div class="layui-form-item">
       <label for="L_username" class="layui-form-label"> <span class="x-red">*</span>昵称 </label>
       <div class="layui-input-inline">
-        <input type="text" id="L_username" name="username" required lay-verify="nikename"
+        <input type="text" id="L_username" name="userName" required lay-verify="nikename"
                         autocomplete="off" class="layui-input">
       </div>
     </div>
     <div class="layui-form-item">
       <label for="L_pass" class="layui-form-label"> <span class="x-red">*</span>密码 </label>
       <div class="layui-input-inline">
-        <input type="password" id="L_pass" name="password" required lay-verify="pass"
+        <input type="password" id="L_pass" name="passWord" required lay-verify="pass"
                         autocomplete="off" class="layui-input">
       </div>
       <div class="layui-form-mid layui-word-aux"><span class="x-red">6到16个字符</span>  </div>
@@ -95,17 +95,17 @@
                 //发异步，把数据提交给后台
                 var info;
                 $.ajax({
-                	url: '/javayh/user',
+                	url: '/javayh/saveUser',
                 	type: 'POST',
                 	data: $("#jsonuserdata form").serialize(),//jquery的序列化表单
                 	async: false,//默认true 即异步  请求未结束 ajax后面的内容均会执行   但是false下，只有得到success执行成功后面的才会继续判断
                 	success:function(result){
                 		console.log(result);
-                		info=result.content;
+                		info=result.code;
                 	}
                 });//ajax结束
-                
-        		if(info=="success"){
+                alert(info);
+        		if(info==200){
        			  layer.alert("增加成功", {icon: 6},function () {
                          // 获得frame索引
                          var index = parent.layer.getFrameIndex(window.name);

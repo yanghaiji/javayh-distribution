@@ -22,4 +22,14 @@ public interface UserService {
 	 * @return
 	 */
     List<SysUser> getAllPageUser();
+
+    /**
+     * @Description 新增用户
+     * @UserModule: javayh-distribution
+     * @author Dylan
+     * @date 2019/10/31
+     * @param user
+     * @return void
+     */
+    void saveUser(SysUser user);
 }

@@ -2,15 +2,20 @@ package com.javayh.api.web;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.javayh.common.util.DataResult;
+import com.javayh.common.util.MD5Util;
 import com.javayh.conf.entity.SysUser;
 import com.javayh.conf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,6 +40,15 @@ public class UserController {
         return "user/register";
     }
 
+    /**
+     * @Description 查询用户信息  后期需要在改
+     * @UserModule: javayh-distribution
+     * @author Dylan
+     * @date 2019/10/31
+     * @param pn
+     * @param model
+     * @return java.lang.String
+     */
     @GetMapping("/alluser_admin")
     public String getAllUser(@RequestParam(value = "pn", defaultValue = "1") Integer pn, Model model) {
         PageHelper.startPage(pn, 4);
@@ -43,4 +57,20 @@ public class UserController {
         model.addAttribute("pageInfo", page);
         return "user/users";
     }
+
+    /**
+     * @Description 新增用户
+     * @UserModule: javayh-distribution
+     * @author Dylan
+     * @date 2019/10/31
+     * @param user
+     * @return com.javayh.common.util.DataResult
+     */
+    @PostMapping("/saveUser")
+    @ResponseBody
+    public DataResult addUser(SysUser user) {
+        userService.saveUser(user);
+        return DataResult.success();
+    }
+
 }

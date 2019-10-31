@@ -1,5 +1,8 @@
 package com.javayh.api.serviceimpl;
 
+import com.javayh.common.mybatis.service.BaseService;
+import com.javayh.common.util.DataResult;
+import com.javayh.common.util.MD5Util;
 import com.javayh.conf.dto.SysUserDTO;
 import com.javayh.conf.entity.SysUser;
 import com.javayh.conf.entity.UserRole;
@@ -9,6 +12,7 @@ import com.javayh.conf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,7 +23,7 @@ import java.util.List;
  * @Version
  */
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends BaseService<SysUser> implements UserService {
 
 	@Autowired
 	private UserMapper userMapper;
@@ -36,9 +40,35 @@ public class UserServiceImpl implements UserService {
 		return userMapper.selectUserByName(username);
 	}
 
+	/**
+	 * @Description 列表查询
+	 * @UserModule: javayh-distribution
+	 * @author Dylan
+	 * @date 2019/10/31
+	 * @param
+	 * @return java.util.List<com.javayh.conf.entity.SysUser>
+	 */
 	@Override
 	public List<SysUser> getAllPageUser() {
 		return  userMapper.getAllPageUser();
+	}
+
+	/***
+	 * @Description 新增用户
+	 * @UserModule: javayh-distribution
+	 * @author Dylan
+	 * @date 2019/10/31
+	 * @param user
+	 * @return void
+	 */
+	@Override
+	public void saveUser(SysUser user) {
+		//密码加密  以及初始状态设置
+		String password=user.getPassWord();
+		user.setPassWord(MD5Util.encode(password));
+		user.setActive("活跃");//初始注册人员状态全部为活跃状态
+		user.setCreateDate(new Date());
+		this.save(user);
 	}
 
 }
