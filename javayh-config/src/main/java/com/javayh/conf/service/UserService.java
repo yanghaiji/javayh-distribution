@@ -32,4 +32,14 @@ public interface UserService {
      * @return void
      */
     void saveUser(SysUser user);
+
+    /**
+     * @Description 修改用户信息
+     * @UserModule: exam-web-paper
+     * @author Dylan
+     * @date 2019/11/1
+     * @param user
+     * @return void
+     */
+    void updateUser(SysUser user);
 }

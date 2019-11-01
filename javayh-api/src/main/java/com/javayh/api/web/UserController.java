@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -88,6 +89,37 @@ public class UserController {
         SysUserDTO user=userService.getUserByName(username);
         model.addAttribute("user", user);
         return "user/myInfo";
+    }
+
+    /**
+     * @Description 更新数据回显
+     * @UserModule: exam-web-paper
+     * @author Dylan
+     * @date 2019/11/1
+     * @param username
+     * @param model
+     * @return java.lang.String
+     */
+    @RequestMapping("/toUpdatepage")
+    public String toUpdatePage(@RequestParam("username")String username,Model model) {
+        SysUserDTO user=userService.getUserByName(username);
+        model.addAttribute("user", user);
+        return "user/editPage";
+    }
+
+    /**
+     * @Description 修改用户信息
+     * @UserModule: exam-web-paper
+     * @author Dylan
+     * @date 2019/11/1
+     * @param user
+     * @return com.javayh.common.util.DataResult
+     */
+    @PutMapping("/userUpdate")
+    @ResponseBody
+    public DataResult updateUser(SysUser user) {
+        userService.updateUser(user);
+        return DataResult.success();
     }
 
 }

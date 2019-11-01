@@ -71,4 +71,17 @@ public class UserServiceImpl extends BaseService<SysUser> implements UserService
 		this.save(user);
 	}
 
+	/**
+	 * @Description 修改用户信息
+	 * @UserModule: exam-web-paper
+	 * @author Dylan
+	 * @date 2019/11/1
+	 * @param user
+	 * @return void
+	 */
+	@Override
+	public void updateUser(SysUser user) {
+		this.update(user);
+	}
+
 }
