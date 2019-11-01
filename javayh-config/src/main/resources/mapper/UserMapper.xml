@@ -8,6 +8,7 @@
 	<result column="pass_word" property="passWord"/>
 	<result column="email" property="email"/>
 	<result column="active"  property="active"/>
+	<result column="create_date"  property="createDate"/>
 	<result column="status"  property="status"/>
 	<result column="try_count"  property="tryCount"/>
 	<collection property="roles" ofType="com.javayh.conf.dto.RoleDTO">

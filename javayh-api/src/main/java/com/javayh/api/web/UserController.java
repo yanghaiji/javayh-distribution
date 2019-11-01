@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.javayh.common.util.DataResult;
 import com.javayh.common.util.MD5Util;
+import com.javayh.conf.dto.SysUserDTO;
 import com.javayh.conf.entity.SysUser;
 import com.javayh.conf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,6 +72,22 @@ public class UserController {
     public DataResult addUser(SysUser user) {
         userService.saveUser(user);
         return DataResult.success();
+    }
+
+    /**
+     * @Description 得到用户个人信息
+     * @UserModule: javayh-distribution
+     * @author Dylan
+     * @date 2019/11/1
+     * @param username
+     * @param model
+     * @return java.lang.String
+     */
+    @GetMapping("/user")
+    public String getUser(@RequestParam("username")String username,Model model) {
+        SysUserDTO user=userService.getUserByName(username);
+        model.addAttribute("user", user);
+        return "user/myInfo";
     }
 
 }

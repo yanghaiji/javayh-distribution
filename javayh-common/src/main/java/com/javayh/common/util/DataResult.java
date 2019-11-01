@@ -7,7 +7,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 
 public class DataResult<T> {
-	private int code = 200;// 错误码
+	private int code;// 错误码
 	private T data;// 数据
 	private String msg;// 错误提示
 	private Boolean flushToken; //是否需要刷新jwt  true 刷新， false 不刷新
@@ -49,11 +49,11 @@ public class DataResult<T> {
 	}
 
 	public static <T> DataResult<T> success(T data) {
-		return new DataResult(200,data);
+		return new DataResult(1,data);
 	}
 
 	public static <T> DataResult<T> success() {
-		return new DataResult(200);
+		return new DataResult(1);
 	}
 
 	public int getCode() {

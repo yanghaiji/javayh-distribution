@@ -28,7 +28,7 @@
                 <div class="layui-form-item">
                     <label for="username" class="layui-form-label">登录名</label>
                     <div class="layui-input-inline">
-                        <input type="text" id="username" name="username"   th:value="${user.username}" readonly="readonly"
+                        <input type="text" id="username" name="username"   th:value="${user.userName}" readonly="readonly"
                          class="layui-input">
                     </div>
                 </div>
@@ -36,7 +36,7 @@
                     <label for="phone" class="layui-form-label">状态</label>
                     
                     <div class="layui-input-inline">
-                        <input type="text" id="Active" name="Active" th:value="${user.Active}" readonly="readonly"
+                        <input type="text" id="Active" name="Active" th:value="${user.active}" readonly="readonly"
                          class="layui-input">
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                     <label for="phone" class="layui-form-label">注册日期</label>
                     
                     <div class="layui-input-inline">
-                        <input type="text" id="createadte" name="createdate" th:value="${#dates.format(user.createdate, 'dd/MMM/yyyy')}" readonly="readonly"
+                        <input type="text" id="createadte" name="createdate" th:value="${#dates.format(user.createDate, 'yyyy-MM-dd')}" readonly="readonly"
                          class="layui-input">
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                     <label for="phone" class="layui-form-label">角色</label>
                     
                     <div class="layui-input-inline" th:each="role:${user.roles}">
-                        <input type="text" id="role" name="rolename" th:value="${role.rolename}"  readonly="readonly"
+                        <input type="text" id="role" name="rolename" th:value="${role.roleName}"  readonly="readonly"
                          class="layui-input">
                     </div>
                 </div>
