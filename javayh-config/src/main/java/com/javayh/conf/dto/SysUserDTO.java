@@ -24,6 +24,7 @@ public class SysUserDTO implements Serializable {
     private String active;
     private String email;
     private Date createDate;
+    private String phone;
     /*0 正常 1 锁定*/
     private Integer status;
     private Integer tryCount;

@@ -9,9 +9,11 @@ import com.javayh.conf.entity.UserRole;
 import com.javayh.conf.mapper.UserMapper;
 import com.javayh.conf.mapper.UserRoleMapper;
 import com.javayh.conf.service.UserService;
+import com.javayh.conf.util.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 
@@ -62,13 +64,18 @@ public class UserServiceImpl extends BaseService<SysUser> implements UserService
 	 * @return void
 	 */
 	@Override
-	public void saveUser(SysUser user) {
+	public int saveUser(SysUser user) {
+		SysUserDTO sysUserDTO = userMapper.selectUserByName(user.getUserName());
+		if(sysUserDTO!= null){
+			return 0;
+		}
 		//密码加密  以及初始状态设置
-		String password=user.getPassWord();
+		String password = "123456";
 		user.setPassWord(MD5Util.encode(password));
 		user.setActive("活跃");//初始注册人员状态全部为活跃状态
 		user.setCreateDate(new Date());
 		this.save(user);
+		return 1;
 	}
 
 	/**
@@ -81,7 +88,22 @@ public class UserServiceImpl extends BaseService<SysUser> implements UserService
 	 */
 	@Override
 	public void updateUser(SysUser user) {
-		this.update(user);
+		user.setUpdateDate(new Date());
+		userMapper.updateInfo(user);
+	}
+
+	@Override
+	public void delete(int id) {
+		userMapper.updateDelFlag(id);
+	}
+
+	@Override
+	public void updateUserPwd(SysUser user) {
+		//密码加密  以及初始状态设置
+		String password=user.getPassWord();
+		user.setPassWord(MD5Util.encode(password));
+		user.setUpdateDate(new Date());
+		super.update(user);
 	}
 
 }

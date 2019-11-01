@@ -23,11 +23,7 @@ public class LoginController {
 	@Autowired
 	private SessionRegistry sessionRegistry;
 	@Autowired
-	MyUserDetailService myUserDetailService;
-	@Autowired
-	UserService userService;
-	@Autowired
-	SysMenuService sysMenuService;
+	private SysMenuService sysMenuService;
 
 	/**
 	 * @Description 登录

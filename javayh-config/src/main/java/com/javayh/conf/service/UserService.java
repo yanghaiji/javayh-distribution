@@ -31,7 +31,7 @@ public interface UserService {
      * @param user
      * @return void
      */
-    void saveUser(SysUser user);
+    int saveUser(SysUser user);
 
     /**
      * @Description 修改用户信息
@@ -42,4 +42,16 @@ public interface UserService {
      * @return void
      */
     void updateUser(SysUser user);
+
+	/**
+	 * @Description 删除用户
+	 * @UserModule: exam-web-paper
+	 * @author Dylan
+	 * @date 2019/11/1
+	 * @param id
+	 * @return void
+	 */
+    void delete(int id);
+
+	void updateUserPwd(SysUser user);
 }

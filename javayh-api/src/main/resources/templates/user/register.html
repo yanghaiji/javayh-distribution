@@ -12,13 +12,6 @@
 <link rel="stylesheet" th:href="@{/css/x-admin.css}" media="all">
 
 <style type="text/css">
-	/* body{
-		  font-family: "华文细黑";
-		  background:url("https://desk-fd.zol-img.com.cn/t_s1920x1200c5/g5/M00/02/05/ChMkJlbKyIyIPqwEAAoT7kBm98gAALIDwAcn-YAChQG861.jpg") no-repeat;
-		  background-size: 100%;
-	} */
-  
-  
  
 </style>
 
@@ -26,24 +19,38 @@
 </head>
 
 <body  >
-<div class="x-body  layui-bg-cyan" id="jsonuserdata"  >
+<div class="x-body  layui-bg-cyan" id="jsonuserdata"  style="
+    z-index: 19891015;
+    width: 520px;
+    height: 300px;
+    top: 3px;
+    left: 209.5px;
+    overflow: visible;
+">
   <form class="layui-form"  >
     <div class="layui-form-item">
       <label for="L_email" class="layui-form-label"> <span class="x-red">*</span>邮箱 </label>
       <div class="layui-input-inline">
         <input type="text" id="L_email" name="email" required lay-verify="email"
-                        autocomplete="off" class="layui-input">
+                        autocomplete="off" class="layui-input" placeholder="请填写正确邮箱">
       </div>
-      <div class="layui-form-mid layui-word-aux"> <span class="x-red">*</span><span class="x-red">将会成为您唯一的登入名</span></div>
+
     </div>
     <div class="layui-form-item">
       <label for="L_username" class="layui-form-label"> <span class="x-red">*</span>昵称 </label>
       <div class="layui-input-inline">
         <input type="text" id="L_username" name="userName" required lay-verify="nikename"
-                        autocomplete="off" class="layui-input">
+                        autocomplete="off" class="layui-input" placeholder="这将是您唯一的登陆名称">
       </div>
     </div>
     <div class="layui-form-item">
+      <label for="L_phone" class="layui-form-label"> <span class="x-red">*</span>电话</label>
+      <div class="layui-input-inline">
+        <input type="text" id="L_phone" name="phone" required lay-verify="phone"
+               autocomplete="off" class="layui-input" placeholder="请填写正确手机号">
+      </div>
+    </div>
+   <!-- <div class="layui-form-item">
       <label for="L_pass" class="layui-form-label"> <span class="x-red">*</span>密码 </label>
       <div class="layui-input-inline">
         <input type="password" id="L_pass" name="passWord" required lay-verify="pass"
@@ -57,10 +64,10 @@
         <input type="password" id="L_repass" name="rpassword" required lay-verify="repass"
                         autocomplete="off" class="layui-input">
       </div>
-    </div>
+    </div>-->
     <div class="layui-form-item">
       <label for="L_repass" class="layui-form-label"> </label>
-      <button  class="layui-btn" lay-filter="add" lay-submit=""> 增加 </button>
+      <button  class="layui-btn" lay-filter="add" lay-submit=""> 增加用户 </button>
     </div>
   </form>
 </div>
@@ -91,7 +98,6 @@
 
               //监听提交
               form.on('submit(add)', function(data){
-                console.log(data);
                 //发异步，把数据提交给后台
                 var info;
                 $.ajax({
@@ -113,11 +119,8 @@
                          parent.location.reload();//刷新
                      });
         		}else{
-        			 layer.alert("后台数据校验失败,请重新注册", {icon: 7},function () {
-                         // 获得frame索引
-                         var index = parent.layer.getFrameIndex(window.name);
-                         //关闭当前frame
-                         parent.layer.close(index);
+        			 layer.alert("用户名已存在,请重新输入", {icon: 7},function () {
+                       layer.close(layer.index);
                      });
         			
         		}//提交判断结束

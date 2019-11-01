@@ -10,12 +10,7 @@ import com.javayh.conf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -71,8 +66,8 @@ public class UserController {
     @PostMapping("/saveUser")
     @ResponseBody
     public DataResult addUser(SysUser user) {
-        userService.saveUser(user);
-        return DataResult.success();
+        int i = userService.saveUser(user);
+        return i == 1 ?DataResult.success():DataResult.error();
     }
 
     /**
@@ -122,4 +117,17 @@ public class UserController {
         return DataResult.success();
     }
 
+    @DeleteMapping(value = "delete")
+    @ResponseBody
+    public DataResult delete(int id) {
+        userService.delete(id);
+        return DataResult.success();
+    }
+
+    @PutMapping("/updatePwd")
+    @ResponseBody
+    public DataResult updateUserPwd(SysUser user) {
+        userService.updateUserPwd(user);
+        return DataResult.success();
+    }
 }

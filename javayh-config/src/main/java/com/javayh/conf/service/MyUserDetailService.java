@@ -32,6 +32,9 @@ public class MyUserDetailService implements UserDetailsService {
 			throw new UsernameNotFoundException("用户名不存在");
 		}
 		SysUserDTO user = userService.getUserByName(username);
+		if (user == null || user.equals("")) {
+			throw new UsernameNotFoundException("用户名不存在");
+		}
 		// 获得所有登录用户的信息
 		List<Object> list = sessionRegistry.getAllPrincipals();
 		// 得到当前登录用户的信息  将得到的角色封装 在后面页面认证成功后会用到

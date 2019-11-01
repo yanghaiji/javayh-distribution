@@ -17,54 +17,98 @@
 <body  class="layui-bg-gray">
 <div class="x-body" id="jsonuserdata"  >
 	<div class="x-nav">
-		<a><span class="hidden-phone" id="username" sec:authentication="name"></span> 您好！您的 <cite>的个人信息</cite></a>
+		<a class="x-nav2"><span class="hidden-phone" id="username" sec:authentication="name"></span> 您好！您的 <cite>的个人信息</cite></a>
 	</div>
-	<div></div>
-	<form class="layui-form"  >
+	<div>
 
-		<div class="layui-form-item" style="display:none">
-			<label  class="layui-form-label">注册ID </label>
-			<div class="layui-input-inline">
-				<input type="text" id="id" name="id" th:value="${user.id}" readonly="readonly"
-					   class="layui-input">
-			</div>
-		</div>
+	</div>
+	<div class="nav">
+		<form class="layui-form">
 
-		<div class="layui-form-item">
-			<label for="L_email" class="layui-form-label"> <span class="x-red">*</span>邮箱 </label>
-			<div class="layui-input-inline">
-				<input type="text" id="L_email" name="email" required lay-verify="email" th:value="${user.email}"
-					   autocomplete="on" class="layui-input">
+			<div class="layui-form-item" style="display:none">
+				<label  class="layui-form-label">注册ID </label>
+				<div class="layui-input-inline">
+					<input type="text" id="id" name="id" th:value="${user.id}" readonly="readonly"
+						   class="layui-input">
+				</div>
 			</div>
-		</div>
-		<div class="layui-form-item">
-			<label for="L_username" class="layui-form-label"> <span class="x-red">*</span>昵称 </label>
-			<div class="layui-input-inline">
-				<input type="text" id="L_username" name="username" th:value="${user.userName}" readonly="readonly"
-					   autocomplete="on" class="layui-input">
+			<div class="layui-form-item">
+				<label for="L_username" class="layui-form-label"> <span class="x-red">*</span>昵称 </label>
+				<div class="layui-input-inline">
+					<input type="text" id="L_username" name="username" th:value="${user.userName}" readonly="readonly"
+						   autocomplete="on" class="layui-input" disabled=true>
+				</div>
 			</div>
-		</div>
-		<div class="layui-form-item">
-			<label  class="layui-form-label"> <span class="x-red">*</span>状态 </label>
-			<div class="layui-input-inline">
-				<input type="text"  name="Active" th:value="${user.active}"
-					   autocomplete="on" class="layui-input">
+			<div class="layui-form-item">
+				<label for="L_email" class="layui-form-label"> <span class="x-red">*</span>邮箱 </label>
+				<div class="layui-input-inline">
+					<input type="text" id="L_email" name="email" required lay-verify="email" th:value="${user.email}"
+						   autocomplete="on" class="layui-input">
+				</div>
 			</div>
-		</div>
+			<div class="layui-form-item">
+				<label for="L_phone" class="layui-form-label"> <span class="x-red">*</span>电话</label>
+				<div class="layui-input-inline">
+					<input type="text" id="L_phone" name="phone" required lay-verify="phone" th:value="${user.phone}"
+						   autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label  class="layui-form-label"> <span class="x-red">*</span>状态 </label>
+				<div class="layui-input-inline">
+					<input type="text"  name="Active" th:value="${user.active}"
+						   autocomplete="on" class="layui-input">
+				</div>
+			</div>
 
-		<div class="layui-form-item">
-			<label  class="layui-form-label"> <span class="x-red">*</span>注册日期 </label>
-			<div class="layui-input-inline">
-				<input type="text"  name="createdate2" th:value="${#dates.format(user.createDate, 'yyyy-MM-dd')}" readonly="readonly"
-					   autocomplete="on" class="layui-input">
+			<div class="layui-form-item">
+				<label  class="layui-form-label"> <span class="x-red">*</span>注册日期 </label>
+				<div class="layui-input-inline">
+					<input type="text"  name="createdate2" th:value="${#dates.format(user.createDate, 'yyyy-MM-dd')}" readonly="readonly"
+						   autocomplete="on" class="layui-input" disabled=true>
+				</div>
 			</div>
-		</div>
 
-		<div class="layui-form-item">
-			<label for="L_repass" class="layui-form-label"> </label>
-			<button  class="layui-btn" lay-filter="add" lay-submit=""> 确认更新 </button>
-		</div>
-	</form>
+			<div class="layui-form-item">
+				<label for="L_repass" class="layui-form-label"> </label>
+				<button  class="layui-btn" lay-filter="add" lay-submit=""> 确认更新 </button>
+			</div>
+		</form>
+	</div>
+	<div class="cont">
+		<form class="layui-form"  >
+
+			<div class="layui-form-item" style="display:none">
+				<label  class="layui-form-label">注册ID </label>
+				<div class="layui-input-inline">
+					<input type="text" id="id" name="id" th:value="${user.id}" readonly="readonly"
+						   class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label for="L_pass" class="layui-form-label"> <span class="x-red">*</span>密码 </label>
+				<div class="layui-input-inline">
+					<input type="password" id="L_pass" name="passWord" required lay-verify="pass"
+						   autocomplete="off" class="layui-input">
+				</div>
+				<div class="layui-form-mid layui-word-aux"><span class="x-red">6到16个字符</span>  </div>
+			</div>
+			<div class="layui-form-item">
+				<label for="L_repass" class="layui-form-label"> <span class="x-red">*</span>确认密码 </label>
+				<div class="layui-input-inline">
+					<input type="password" id="L_repass" name="rpassword" required lay-verify="repass"
+						   autocomplete="off" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label for="L_repass" class="layui-form-label"> </label>
+				<button  class="layui-btn" lay-filter="updatePwd" lay-submit=""> 修改密码 </button>
+			</div>
+		</form>
+	</div>
+</div>
 </div>
 <script th:src="@{/lib/layui/layui.js}" charset="utf-8">
 </script>
@@ -75,7 +119,6 @@
 		$ = layui.jquery;
 		var form = layui.form()
 				,layer = layui.layer;
-
 		//自定义验证规则
 		form.verify({
 			nikename: function(value){
@@ -83,7 +126,12 @@
 					return '昵称至少得5个字符啊';
 				}
 			}
-
+			,pass: [/(.+){6,12}$/, '密码必须6到12位']
+			,repass: function(value){
+				if($('#L_pass').val()!=$('#L_repass').val()){
+					return '两次密码不一致';
+				}
+			}
 		});
 
 		//监听提交
@@ -108,7 +156,48 @@
 			return false;//必须返回
 		});//监听结束
 
+		form.on('submit(updatePwd)', function(data){
+			//发异步，把数据提交给后台
+			var info;
+			$.ajax({
+				url: '/javayh/updatePwd',
+				type: 'put',
+				data: $("#jsonuserdata form").serialize(),//jquery的序列化表单
+				async: false,//默认true 即异步  请求未结束 ajax后面的内容均会执行   但是false下，只有得到success执行成功后面的才会继续判断
+				success:function(result){
+					info=result.code;
+				}
+			});//ajax结束
+			if(info==1){
+				layer.msg('密码更新成功,为确保安全请重新登录', {icon: 6});
+			}else{
+				layer.msg('后台数据校验失败,请重新填写', {icon: 7});
+			}//提交判断结束
+
+			return false;//必须返回
+		});//监听结束
 	});//表单提交结束
 </script>
+
+<style type="text/css">
+
+	.cont{
+		float:left;
+		width: 48%;
+		margin: 10px;
+		height: auto;
+	}
+	.nav{
+		float:left;
+		width: 48%;
+		margin: 10px;
+		height: auto;
+	}
+	.x-nav2{
+		margin:5px auto; /* 居中 这个是必须的，，其它的属性非必须 */
+		width:500px; /* 给个宽度 顶到浏览器的两边就看不出居中效果了 */
+		text-align:center; /* 文字等内容居中 */
+	}
+</style>
 </body>
 </html>

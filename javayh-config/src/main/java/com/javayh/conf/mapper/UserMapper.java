@@ -44,4 +44,16 @@ public interface UserMapper extends BaseMapper<SysUser> {
     List<String> selectRoleIdByName(String userName);
 
 	List<SysUser> getAllPageUser();
+
+	/**
+     * @Description 获取角色id
+     * @UserModule: exam-web-paper
+     * @author Dylan
+     * @date 2019/10/30
+	 * @param id
+     * @return
+     */
+	void updateDelFlag(int id);
+
+    void updateInfo(SysUser user);
 }

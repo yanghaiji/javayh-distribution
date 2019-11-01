@@ -30,7 +30,7 @@ public class DataResult<T> {
 	}
 
 	private DataResult(T data, Boolean flushToken) {
-		this.code=200;
+		this.code=1;
 		this.data=data;
 		this.flushToken=flushToken;
 	}
@@ -54,6 +54,10 @@ public class DataResult<T> {
 
 	public static <T> DataResult<T> success() {
 		return new DataResult(1);
+	}
+
+	public static <T> DataResult<T> error() {
+		return new DataResult(0);
 	}
 
 	public int getCode() {

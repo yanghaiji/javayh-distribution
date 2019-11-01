@@ -20,43 +20,44 @@
             </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"  href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a>
 </div>
-<div class="x-body">
+<div class="x-body" >
 
 
-    <xblock><button class="layui-btn" onclick="member_add('添加用户','/javayh/adduser','550','400')"><i class="layui-icon">&#xe608;</i>添加</button><span class="x-right" style="line-height:40px">总 [[${pageInfo.total } ]]条记录</span></xblock>
+    <xblock ><button class="layui-btn" onclick="member_add('添加用户','/javayh/adduser','550','400')"><i class="layui-icon">&#xe608;</i>添加</button><span class="x-right" style="line-height:40px">总 [[${pageInfo.total } ]]条记录</span></xblock>
     <table class="layui-table">
         <thead>
         <tr>
-            <th>用户ID</th>
             <th>用户名</th>
             <th>注册日期</th>
             <th>邮箱</th>
+            <th>电话</th>
             <th>状态</th>
             <th>操作</th>
         </tr>
         </thead>
         <tbody id="x-link">
         <tr  th:each="user:${pageInfo.list}">
-            <td class="center" th:text="${user.id}" ></td>
             <td class="center" th:text="${user.userName}"></td>
-            <td class="center">[[${#dates.format(user.createDate, 'dd/MMM/yyyy HH:mm')}]]</td>
+            <td class="center">[[${#dates.format(user.createDate, 'yyyy-MM-dd')}]]</td>
             <td class="center">
                 <span class="center">[[${user.email}]]</span>
             </td>
-
+            <td class="center" th:text="${user.phone}" ></td>
             <td class="center">
                 <span class="layui-btn layui-btn-normal">[[${user.active}]]</span>
             </td>
+
             <td class="center">
-                <a class="layui-btn layui-btn-warm" href="">
+              <!--  <a class="layui-btn layui-btn-warm" href="">
                     <i class="layui-icon">&#xe642;</i>
                     Edit
-                </a>
-                <a class="layui-btn layui-btn-danger" href="javascript:;" onclick="commemt_del(this,$(this).parents('tr').find('td')[0].innerHTML)" >
+                </a>-->
+                <a class="layui-btn layui-btn-danger" href="javascript:;" onclick="commemt_del(this,$(this).parents('tr').find('td')[6].innerHTML)" >
                     <i class="layui-icon">&#xe640;</i>
                     Delete
                 </a>
             </td>
+            <td class="center" th:text="${user.id}" style="display:none"></td>
         </tr>
         </tbody>
     </table>
@@ -74,8 +75,6 @@
 <script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
 <script th:src="@{/js/x-layui.js}" charset="utf-8"></script>
 <script   type="text/javascript" th:inline="javascript" >
-    console.log([[${pageInfo}]]);
-
     layui.use(['element','laypage','layer','form'], function(){
         $ = layui.jquery;//jquery
         lement = layui.element();//面包导航
@@ -126,13 +125,13 @@
         layer.confirm('确认要删除吗？',function(index){
             //发异步删除数据
             $.ajax({
-                url: basePath+'/javayh/user?id=' +id,
+                url: basePath+'/javayh/delete?id=' +id,
                 type: 'DELETE',
                 dataType: 'json',
                 async: false,
                 success:function(result){
                     console.log(result);
-                    if(result.content=="success"){
+                    if(result.code==1){
                         $(obj).parents("tr").remove();
                         location.reload();
                         layer.msg('已删除!',{icon:1,time:1000});

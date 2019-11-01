@@ -10,7 +10,7 @@
 	<result column="active"  property="active"/>
 	<result column="create_date"  property="createDate"/>
 	<result column="status"  property="status"/>
-	<result column="try_count"  property="tryCount"/>
+	<result column="phone"  property="phone"/>
 	<collection property="roles" ofType="com.javayh.conf.dto.RoleDTO">
 		<id column="roleId" property="id"/>
 		<result column="roleName"  property="roleName"/>
@@ -26,6 +26,7 @@
         LEFT JOIN sys_role_user sru on u.id= sru.sys_user_id
         LEFT JOIN sys_role r on sru.sys_role_id=r.id
         where user_name= #{username}
+        and del_flag = 0
 	</select>
 
 	<select id="selectRoleByName" resultType="com.javayh.conf.vo.UserNameRoleVO">
@@ -38,6 +39,7 @@
 			LEFT JOIN sys_role ro on ro.id = rous.sys_role_id
 		WHERE
 			us.user_name = #{userName}
+			 and del_flag = 0
 	</select>
 
 	<select id="selectRoleIdByName" resultType="String">
@@ -48,16 +50,35 @@
 			LEFT JOIN sys_role_user rous on rous.sys_user_id = us.id
 		WHERE
 			us.user_name = #{userName}
+			and del_flag = 0
 	</select>
 
 	<select id="getAllPageUser"  resultType="com.javayh.conf.entity.SysUser">
 		SELECT
 			id,user_name as userName,pass_word as passWord,
-			email,active
+			email,active,create_date as createDate,phone
 		FROM
 		sys_user
+		 where del_flag = 0
 		ORDER BY create_date DESC
 
 	</select>
 
+	<update id="updateDelFlag">
+		UPDATE sys_user
+		SET
+		 del_flag = '1'
+		WHERE
+			id = #{id}
+	</update>
+
+	<update id="updateInfo" parameterType="com.javayh.conf.entity.SysUser">
+		UPDATE sys_user
+		SET
+		 email=#{email},
+		 phone=#{phone},
+		 active=#{active}
+		WHERE
+			id = ${id}
+	</update>
 </mapper>
