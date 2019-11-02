@@ -4,6 +4,7 @@ import com.javayh.common.mybatis.service.BaseService;
 import com.javayh.common.util.DataResult;
 import com.javayh.common.util.MD5Util;
 import com.javayh.conf.dto.SysUserDTO;
+import com.javayh.conf.dto.UserModfiyPwdDTO;
 import com.javayh.conf.entity.SysUser;
 import com.javayh.conf.entity.UserRole;
 import com.javayh.conf.mapper.UserMapper;
@@ -98,12 +99,18 @@ public class UserServiceImpl extends BaseService<SysUser> implements UserService
 	}
 
 	@Override
-	public void updateUserPwd(SysUser user) {
+	public int updateUserPwd(UserModfiyPwdDTO user) {
 		//密码加密  以及初始状态设置
-		String password=user.getPassWord();
-		user.setPassWord(MD5Util.encode(password));
-		user.setUpdateDate(new Date());
-		super.update(user);
+		String lodPwd = MD5Util.encode(user.getLodPwd());
+		SysUser byId = super.findById(user.getId());
+		if(lodPwd.equals(byId.getPassWord())){
+			String password=user.getNewPwd();
+			user.setNewPwd(MD5Util.encode(password));
+			user.setUpdateDate(new Date());
+			userMapper.updatePwd(user);
+			return 1;
+		}
+		return 0;
 	}
 
 }

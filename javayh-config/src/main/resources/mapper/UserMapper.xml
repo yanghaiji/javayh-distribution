@@ -81,4 +81,14 @@
 		WHERE
 			id = ${id}
 	</update>
+
+
+	<update id="updatePwd" parameterType="com.javayh.conf.dto.UserModfiyPwdDTO">
+		UPDATE sys_user
+		SET
+		 pass_word=#{newPwd},
+		 update_date = #{updateDate}
+		WHERE
+			id = ${id}
+	</update>
 </mapper>

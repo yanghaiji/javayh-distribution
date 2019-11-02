@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.javayh.common.util.DataResult;
 import com.javayh.common.util.MD5Util;
 import com.javayh.conf.dto.SysUserDTO;
+import com.javayh.conf.dto.UserModfiyPwdDTO;
 import com.javayh.conf.entity.SysUser;
 import com.javayh.conf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -124,10 +125,18 @@ public class UserController {
         return DataResult.success();
     }
 
+    /**
+     * @Description 修改密码
+     * @UserModule: exam-web-paper
+     * @author Dylan
+     * @date 2019/11/1
+     * @param user
+     * @return com.javayh.common.util.DataResult
+     */
     @PutMapping("/updatePwd")
     @ResponseBody
-    public DataResult updateUserPwd(SysUser user) {
-        userService.updateUserPwd(user);
-        return DataResult.success();
+    public DataResult updateUserPwd(UserModfiyPwdDTO user) {
+        int i = userService.updateUserPwd(user);
+        return i == 0 ? DataResult.error(): DataResult.success();
     }
 }

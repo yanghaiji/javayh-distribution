@@ -3,6 +3,7 @@ package com.javayh.conf.mapper;
 
 import com.javayh.common.mybatis.mapper.BaseMapper;
 import com.javayh.conf.dto.SysUserDTO;
+import com.javayh.conf.dto.UserModfiyPwdDTO;
 import com.javayh.conf.entity.SysUser;
 import com.javayh.conf.vo.UserNameRoleVO;
 import org.apache.ibatis.annotations.Mapper;
@@ -56,4 +57,6 @@ public interface UserMapper extends BaseMapper<SysUser> {
 	void updateDelFlag(int id);
 
     void updateInfo(SysUser user);
+
+	void updatePwd(UserModfiyPwdDTO user);
 }

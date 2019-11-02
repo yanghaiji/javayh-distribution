@@ -15,13 +15,12 @@
 	<link rel="stylesheet" th:href="@{/css/x-admin.css}" media="all">
 </head>
 <body  class="layui-bg-gray">
+<div class="x-nav">
+	<a><span class="hidden-phone" id="username" sec:authentication="name"></span> 您好！您的 <cite>的个人信息</cite></a>
+	<a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"  href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
 <div class="x-body" id="jsonuserdata"  >
-	<div class="x-nav">
-		<a class="x-nav2"><span class="hidden-phone" id="username" sec:authentication="name"></span> 您好！您的 <cite>的个人信息</cite></a>
-	</div>
-	<div>
 
-	</div>
 	<div class="nav">
 		<form class="layui-form">
 
@@ -76,7 +75,7 @@
 		</form>
 	</div>
 	<div class="cont">
-		<form class="layui-form"  >
+		<form class="layui-form"  id="layui-form-up">
 
 			<div class="layui-form-item" style="display:none">
 				<label  class="layui-form-label">注册ID </label>
@@ -85,20 +84,25 @@
 						   class="layui-input">
 				</div>
 			</div>
-
 			<div class="layui-form-item">
-				<label for="L_pass" class="layui-form-label"> <span class="x-red">*</span>密码 </label>
+				<label for="L_passLod" class="layui-form-label"> <span class="x-red">*</span>原密码 </label>
 				<div class="layui-input-inline">
-					<input type="password" id="L_pass" name="passWord" required lay-verify="pass"
-						   autocomplete="off" class="layui-input">
+					<input type="password" id="L_passLod" name="lodPwd" required lay-verify="pass"
+						   autocomplete="off" class="layui-input" placeholder="请输入原密码">
 				</div>
-				<div class="layui-form-mid layui-word-aux"><span class="x-red">6到16个字符</span>  </div>
+			</div>
+			<div class="layui-form-item">
+				<label for="L_pass" class="layui-form-label"> <span class="x-red">*</span>新密码 </label>
+				<div class="layui-input-inline">
+					<input type="password" id="L_pass" name="newPwd" required lay-verify="pass"
+						   autocomplete="off" class="layui-input" placeholder="6-16个字符">
+				</div>
 			</div>
 			<div class="layui-form-item">
 				<label for="L_repass" class="layui-form-label"> <span class="x-red">*</span>确认密码 </label>
 				<div class="layui-input-inline">
-					<input type="password" id="L_repass" name="rpassword" required lay-verify="repass"
-						   autocomplete="off" class="layui-input">
+					<input type="password" id="L_repass" name="rnewPwd" required lay-verify="repass"
+						   autocomplete="off" class="layui-input"  placeholder="6-16个字符">
 				</div>
 			</div>
 
@@ -123,10 +127,10 @@
 		form.verify({
 			nikename: function(value){
 				if(value.length < 5){
-					return '昵称至少得5个字符啊';
+					return '昵称至少5个字符';
 				}
 			}
-			,pass: [/(.+){6,12}$/, '密码必须6到12位']
+			,pass: [/(.+){6,16}$/, '密码必须6-16位']
 			,repass: function(value){
 				if($('#L_pass').val()!=$('#L_repass').val()){
 					return '两次密码不一致';
@@ -170,8 +174,10 @@
 			});//ajax结束
 			if(info==1){
 				layer.msg('密码更新成功,为确保安全请重新登录', {icon: 6});
+				$("#layui-form-up")[0].reset();
 			}else{
-				layer.msg('后台数据校验失败,请重新填写', {icon: 7});
+				layer.msg('原密码输入有误,请重新输入', {icon: 7});
+				$("#layui-form-up")[0].reset();
 			}//提交判断结束
 
 			return false;//必须返回
@@ -192,11 +198,6 @@
 		width: 48%;
 		margin: 10px;
 		height: auto;
-	}
-	.x-nav2{
-		margin:5px auto; /* 居中 这个是必须的，，其它的属性非必须 */
-		width:500px; /* 给个宽度 顶到浏览器的两边就看不出居中效果了 */
-		text-align:center; /* 文字等内容居中 */
 	}
 </style>
 </body>

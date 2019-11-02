@@ -1,6 +1,7 @@
 package com.javayh.conf.service;
 
 import com.javayh.conf.dto.SysUserDTO;
+import com.javayh.conf.dto.UserModfiyPwdDTO;
 import com.javayh.conf.entity.SysUser;
 
 import java.util.List;
@@ -53,5 +54,5 @@ public interface UserService {
 	 */
     void delete(int id);
 
-	void updateUserPwd(SysUser user);
+	int updateUserPwd(UserModfiyPwdDTO user);
 }
