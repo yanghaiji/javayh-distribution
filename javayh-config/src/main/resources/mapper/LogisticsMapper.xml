@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javayh.conf.mapper.LogisticsMapper">
+
+	<select id="findListLog" resultType="com.javayh.conf.vo.LogisticsVO">
+		SELECT
+			id,
+			addressee_name as addresseeName,
+			addressee,
+			addressee_phone as addresseePhone,
+			sender_name as senderName,
+			sender_add as senderAdd,
+			if(ems_status=0,'未发货','已发货') as emsStatus,
+			if(retreat_status=0,'否','是') as retreatStatus,
+			retreat_info retreatInfo,
+			create_date as  createDate,
+			update_date as updateDate,
+			create_by createBy
+		FROM
+			sys_logistics
+	</select>
+
+</mapper>

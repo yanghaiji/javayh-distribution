@@ -5,8 +5,6 @@ import lombok.Data;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Data
 public class SysUser implements Serializable{

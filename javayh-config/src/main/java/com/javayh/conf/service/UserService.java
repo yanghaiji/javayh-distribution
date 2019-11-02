@@ -54,5 +54,13 @@ public interface UserService {
 	 */
     void delete(int id);
 
+    /**
+     * @Description 修改密码
+     * @UserModule: javayh
+     * @author Dylan
+     * @date 2019/11/2 0002
+     * @param [user]
+     * @return int
+     */
 	int updateUserPwd(UserModfiyPwdDTO user);
 }

@@ -118,6 +118,14 @@ public class UserController {
         return DataResult.success();
     }
 
+    /**
+     * @Description 删除用户
+     * @UserModule: javayh
+     * @author Dylan
+     * @date 2019/11/2 0002
+     * @param [id]
+     * @return com.javayh.common.util.DataResult
+     */
     @DeleteMapping(value = "delete")
     @ResponseBody
     public DataResult delete(int id) {

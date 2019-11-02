@@ -93,11 +93,27 @@ public class UserServiceImpl extends BaseService<SysUser> implements UserService
 		userMapper.updateInfo(user);
 	}
 
+	/**
+	 * @Description 删除用户
+	 * @UserModule: javayh
+	 * @author Dylan
+	 * @date 2019/11/2 0002
+	 * @param [id]
+	 * @return void
+	 */
 	@Override
 	public void delete(int id) {
 		userMapper.updateDelFlag(id);
 	}
 
+	/**
+	 * @Description 修改密码
+	 * @UserModule: javayh
+	 * @author Dylan
+	 * @date 2019/11/2 0002
+	 * @param [user]
+	 * @return int
+	 */
 	@Override
 	public int updateUserPwd(UserModfiyPwdDTO user) {
 		//密码加密  以及初始状态设置

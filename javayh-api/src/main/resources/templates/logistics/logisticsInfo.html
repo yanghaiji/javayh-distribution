@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html  lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>
+        物流信息管理
+    </title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" th:href="@{/css/x-admin.css}" media="all">
+</head>
+<body>
+<div class="x-nav">
+            <span class="layui-breadcrumb">
+              <a><cite>物流信息列表</cite></a>
+            </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"  href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body" >
+
+
+    <xblock ><button class="layui-btn" onclick="member_add('添加用户','/javayh/adduser','550','400')"><i class="layui-icon">&#xe608;</i>添加</button><span class="x-right" style="line-height:40px">总 [[${pageInfo.total } ]]条记录</span></xblock>
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th>收件人</th>
+            <th>收件地址</th>
+            <th>联系方式</th>
+            <th>寄件人</th>
+            <th>寄件地址</th>
+            <th>下单时间</th>
+            <th>物流状态</th>
+            <th>是否退货</th>
+            <th>退货原因</th>
+            <th>操作人</th>
+        </tr>
+        </thead>
+        <tbody id="x-link">
+        <tr  th:each="loginfo:${pageInfo.list}">
+            <td class="center" th:text="${loginfo.addresseeName}"></td>
+            <td class="center" th:text="${loginfo.addressee}"></td>
+            <td class="center" th:text="${loginfo.addresseePhone}" ></td>
+            <td class="center" th:text="${loginfo.senderName}"></td>
+            <td class="center" th:text="${loginfo.senderAdd}"></td>
+            <td class="center">[[${#dates.format(loginfo.createDate, 'yyyy-MM-dd')}]]</td>
+            <td class="center">
+                <span class="layui-btn layui-btn-normal">[[${loginfo.emsStatus}]]</span>
+            </td>
+            <td class="center">
+                <span class="layui-btn layui-btn-normal">[[${loginfo.retreatStatus}]]</span>
+            </td>
+            <td class="center" th:text="${loginfo.retreatInfo}"></td>
+            <td class="center">
+                <span class="layui-btn layui-btn-normal">[[${loginfo.createBy}]]</span>
+            </td>
+            <td class="center" th:text="${loginfo.id}" style="display:none"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div id="page"></div>
+
+</div>
+
+<!--=====================================javascript================================= -->
+<script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
+<script th:src="@{/js/x-layui.js}" charset="utf-8"></script>
+<script   type="text/javascript" th:inline="javascript" >
+    layui.use(['element','laypage','layer','form'], function(){
+        $ = layui.jquery;//jquery
+        lement = layui.element();//面包导航
+        laydate = layui.laydate;//日期插件
+        laypage = layui.laypage;//分页
+        layer = layui.layer;//弹出层
+        form = layui.form();//弹出层
+        //  1)分页插件
+        //以上模块根据需要引入
+        laypage({
+            cont: 'page'
+            ,pages: [[${pageInfo.pages }]]
+            ,curr: [[${pageInfo.pageNum }]]
+            ,first: '首页'
+            ,last: '尾页'
+            ,prev: '<em><</em>'
+            ,next: '<em>></em>'
+            ,jump : function(obj, first){
+                if (!first) {
+                    var pn=obj.curr;
+                    window.location.href="/javayh/logistics_info?pn="+pn;//跳转链接
+                }
+            }
+        });
+    })
+
+</script>
+
+</body>
+</html>
