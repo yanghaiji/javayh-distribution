@@ -1,6 +1,7 @@
 package com.javayh.conf.mapper;
 
 import com.javayh.common.mybatis.mapper.BaseMapper;
+import com.javayh.conf.dto.LogisticsInfoSerchDTO;
 import com.javayh.conf.entity.Logistics;
 import com.javayh.conf.vo.LogisticsVO;
 import org.apache.ibatis.annotations.Mapper;
@@ -23,5 +24,5 @@ public interface LogisticsMapper {
      * @param []
      * @return java.util.List<com.javayh.conf.entity.Logistics>
      */
-    List<LogisticsVO> findListLog();
+    List<LogisticsVO> findListLog(LogisticsInfoSerchDTO dto);
 }

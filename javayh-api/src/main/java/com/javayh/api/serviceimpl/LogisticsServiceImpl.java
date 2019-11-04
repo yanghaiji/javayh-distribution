@@ -1,6 +1,7 @@
 package com.javayh.api.serviceimpl;
 
 import com.javayh.common.mybatis.service.BaseService;
+import com.javayh.conf.dto.LogisticsInfoSerchDTO;
 import com.javayh.conf.entity.Logistics;
 import com.javayh.conf.mapper.LogisticsMapper;
 import com.javayh.conf.service.LogisticsService;
@@ -33,8 +34,8 @@ public class LogisticsServiceImpl implements LogisticsService {
      * @return java.util.List<com.javayh.conf.entity.Logistics>
      */
     @Override
-    public List<LogisticsVO> findListLog() {
-        List<LogisticsVO> listLog = logisticsMapper.findListLog();
+    public List<LogisticsVO> findListLog(LogisticsInfoSerchDTO dto) {
+        List<LogisticsVO> listLog = logisticsMapper.findListLog(dto);
         return listLog;
     }
 }

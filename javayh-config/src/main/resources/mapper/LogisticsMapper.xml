@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.javayh.conf.mapper.LogisticsMapper">
 
-	<select id="findListLog" resultType="com.javayh.conf.vo.LogisticsVO">
+	<select id="findListLog" resultType="com.javayh.conf.vo.LogisticsVO" parameterType="com.javayh.conf.dto.LogisticsInfoSerchDTO">
 		SELECT
 			id,
 			addressee_name as addresseeName,
@@ -18,6 +18,19 @@
 			create_by createBy
 		FROM
 			sys_logistics
+		where 1=1
+		<if test="addresseeName != '' and addresseeName !=null">
+			and addressee_name like concat('%',#{addresseeName} ,'%')
+		</if>
+		<if test="senderName != '' and senderName !=null">
+			and sender_name like concat('%', #{senderName} ,'%')
+		</if>
+		<if test="emsStatus != '' and emsStatus !=null">
+			and ems_status like concat('%', #{emsStatus} ,'%')
+		</if>
+		<if test="retreatStatus != '' and retreatStatus !=null">
+			and retreat_status like concat('%', #{retreatStatus} ,'%')
+		</if>
 	</select>
 
 </mapper>

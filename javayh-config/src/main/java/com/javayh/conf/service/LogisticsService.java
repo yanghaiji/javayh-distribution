@@ -1,5 +1,6 @@
 package com.javayh.conf.service;
 
+import com.javayh.conf.dto.LogisticsInfoSerchDTO;
 import com.javayh.conf.entity.Logistics;
 import com.javayh.conf.vo.LogisticsVO;
 
@@ -21,5 +22,5 @@ public interface LogisticsService {
      * @param [] 
      * @return java.util.List<com.javayh.conf.entity.Logistics>
      */
-    List<LogisticsVO> findListLog();
+    List<LogisticsVO> findListLog(LogisticsInfoSerchDTO dto);
 }

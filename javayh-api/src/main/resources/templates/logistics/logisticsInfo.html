@@ -21,7 +21,42 @@
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"  href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a>
 </div>
 <div class="x-body" >
-
+    <blockquote class="layui-elem-quote news_search" style="padding: 2px;">
+        <div class="layui-row">
+            <form class="layui-form layui-col-md12 x-so" id="complain_search">
+                收件人:
+                <div class="layui-input-inline">
+                    <input type="text" name="addresseeName" id="addresseeName"
+                           placeholder="请输入寄件人" autocomplete="off" class="layui-input">
+                </div>
+                寄件人:
+                <div class="layui-input-inline">
+                    <input type="text" name="senderName" id="senderName"
+                           placeholder="请输入收件人" autocomplete="off" class="layui-input">
+                </div>
+                物流状态:
+                <div class="layui-input-inline">
+                    <select name="emsStatus" id="emsStatus" lay-filter="select_base_cityname" xm-select="select_base_cityname" xm-select-type="1">
+                        <option value="">--请选择--</option>
+                        <option value="0">未发货</option>
+                        <option value="1">已发货</option>
+                    </select>
+                </div>
+                是否退货:
+                <div class="layui-input-inline">
+                    <select name="retreatStatus" id="retreatStatus" lay-filter="select_base_cityname" xm-select="select_base_cityname" xm-select-type="1">
+                        <option value="">--请选择--</option>
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                </div>
+                <button id="search" class="layui-btn" lay-submit
+                        lay-filter="provinceSearch">
+                    <i class="layui-icon">&#xe615;</i>
+                </button>
+            </form>
+        </div>
+    </blockquote>
 
     <xblock ><button class="layui-btn" onclick="member_add('添加用户','/javayh/adduser','550','400')"><i class="layui-icon">&#xe608;</i>添加</button><span class="x-right" style="line-height:40px">总 [[${pageInfo.total } ]]条记录</span></xblock>
     <table class="layui-table">
@@ -95,7 +130,41 @@
             }
         });
     })
-
+    //列表搜索
+    form.on('submit(provinceSearch)', function (data) {
+        var addresseeName = data.field.addresseeName;
+        var senderName = data.field.senderName;
+        var emsStatus = data.field.emsStatus;
+        var retreatStatus = data.field.retreatStatus;
+        $ = layui.jquery;//jquery
+        lement = layui.element();//面包导航
+        laydate = layui.laydate;//日期插件
+        laypage = layui.laypage;//分页
+        layer = layui.layer;//弹出层
+        form = layui.form();//弹出层
+        //  1)分页插件
+        //以上模块根据需要引入
+        table.render({
+            elem: '#LAY-feedback-lst-manage'
+            , url: basePath+'/javayh/logistics_info?addresseeName=' +addresseeName +'&senderName='+senderName  +'&emsStatus='+emsStatus +'&retreatStatus='+retreatStatus,
+        });
+        return false;
+        laypage({
+            cont: 'page'
+            ,pages: [[${pageInfo.pages }]]
+            ,curr: [[${pageInfo.pageNum }]]
+            ,first: '首页'
+            ,last: '尾页'
+            ,prev: '<em><</em>'
+            ,next: '<em>></em>'
+            ,jump : function(obj, first){
+                if (!first) {
+                    var pn=obj.curr;
+                    window.location.href="/javayh/logistics_info?pn="+pn;//跳转链接
+                }
+            }
+        });
+    });
 </script>
 
 </body>

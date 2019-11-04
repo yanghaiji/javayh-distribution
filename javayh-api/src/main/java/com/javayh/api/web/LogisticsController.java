@@ -2,6 +2,7 @@ package com.javayh.api.web;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.javayh.conf.dto.LogisticsInfoSerchDTO;
 import com.javayh.conf.entity.Logistics;
 import com.javayh.conf.entity.SysUser;
 import com.javayh.conf.service.LogisticsService;
@@ -39,9 +40,10 @@ public class LogisticsController {
      * @return java.lang.String
      */
     @GetMapping("/logistics_info")
-    public String getAllUser(@RequestParam(value = "pn", defaultValue = "1") Integer pn, Model model) {
-        PageHelper.startPage(pn, 5);
-        List<LogisticsVO> listLog = logisticsService.findListLog();
+    public String getAllUser(@RequestParam(value = "pn", defaultValue = "1") Integer pn,
+                             LogisticsInfoSerchDTO dto, Model model) {
+        PageHelper.startPage(pn, 4);
+        List<LogisticsVO> listLog = logisticsService.findListLog(dto);
         PageInfo<LogisticsVO> page = new PageInfo<>(listLog, 3);
         model.addAttribute("pageInfo", page);
         return "logistics/logisticsInfo";
