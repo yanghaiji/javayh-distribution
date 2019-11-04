@@ -21,19 +21,19 @@ public class Jsonutils {
 		
 	}
 	
-	public static void main(String[] args) {
-		
-		int[] ids= {1,2,3,4,5};
-		//转成json过程
-		Object js = JSONArray.toJSON(ids);
-		String result = "{\"code\":\""+0+"\",\"data\":"+js+"}";
-		System.out.println(result);
-		//逆过程
-		JSONObject arr2= JSONObject.parseObject(result);
-		JSONArray arr3=arr2.getJSONArray("data");
-		
-		System.out.println(arr3);
-		
-	}
+//	public static void main(String[] args) {
+//
+//		int[] ids= {1,2,3,4,5};
+//		//转成json过程
+//		Object js = JSONArray.toJSON(ids);
+//		String result = "{\"code\":\""+0+"\",\"data\":"+js+"}";
+//		System.out.println(result);
+//		//逆过程
+//		JSONObject arr2= JSONObject.parseObject(result);
+//		JSONArray arr3=arr2.getJSONArray("data");
+//
+//		System.out.println(arr3);
+//
+//	}
 
 }
