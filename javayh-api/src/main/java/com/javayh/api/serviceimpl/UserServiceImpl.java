@@ -4,6 +4,7 @@ import com.javayh.common.mybatis.service.BaseService;
 import com.javayh.common.util.DataResult;
 import com.javayh.common.util.MD5Util;
 import com.javayh.conf.dto.SysUserDTO;
+import com.javayh.conf.dto.SysUserSerchDTO;
 import com.javayh.conf.dto.UserModfiyPwdDTO;
 import com.javayh.conf.entity.SysUser;
 import com.javayh.conf.entity.UserRole;
@@ -52,8 +53,8 @@ public class UserServiceImpl extends BaseService<SysUser> implements UserService
 	 * @return java.util.List<com.javayh.conf.entity.SysUser>
 	 */
 	@Override
-	public List<SysUser> getAllPageUser() {
-		return  userMapper.getAllPageUser();
+	public List<SysUser> getAllPageUser(SysUserSerchDTO dto) {
+		return  userMapper.getAllPageUser(dto);
 	}
 
 	/***

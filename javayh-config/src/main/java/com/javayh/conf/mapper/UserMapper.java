@@ -3,6 +3,7 @@ package com.javayh.conf.mapper;
 
 import com.javayh.common.mybatis.mapper.BaseMapper;
 import com.javayh.conf.dto.SysUserDTO;
+import com.javayh.conf.dto.SysUserSerchDTO;
 import com.javayh.conf.dto.UserModfiyPwdDTO;
 import com.javayh.conf.entity.SysUser;
 import com.javayh.conf.vo.UserNameRoleVO;
@@ -44,7 +45,7 @@ public interface UserMapper extends BaseMapper<SysUser> {
      */
     List<String> selectRoleIdByName(String userName);
 
-	List<SysUser> getAllPageUser();
+	List<SysUser> getAllPageUser(SysUserSerchDTO dto);
 
 	/**
      * @Description 获取角色id

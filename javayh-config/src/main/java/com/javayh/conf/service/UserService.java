@@ -1,6 +1,7 @@
 package com.javayh.conf.service;
 
 import com.javayh.conf.dto.SysUserDTO;
+import com.javayh.conf.dto.SysUserSerchDTO;
 import com.javayh.conf.dto.UserModfiyPwdDTO;
 import com.javayh.conf.entity.SysUser;
 
@@ -22,7 +23,7 @@ public interface UserService {
 	 * 查询用户
 	 * @return
 	 */
-    List<SysUser> getAllPageUser();
+    List<SysUser> getAllPageUser(SysUserSerchDTO dto);
 
     /**
      * @Description 新增用户

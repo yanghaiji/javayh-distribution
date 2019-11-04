@@ -53,13 +53,22 @@
 			and del_flag = 0
 	</select>
 
-	<select id="getAllPageUser"  resultType="com.javayh.conf.entity.SysUser">
+	<select id="getAllPageUser"  resultType="com.javayh.conf.entity.SysUser" parameterType="com.javayh.conf.dto.SysUserSerchDTO">
 		SELECT
 			id,user_name as userName,pass_word as passWord,
 			email,active,create_date as createDate,phone
 		FROM
 		sys_user
 		 where del_flag = 0
+		 <if test="userName != '' and userName !=null">
+			 and user_name like concat('%',#{userName} ,'%')
+		 </if>
+		<if test="email != '' and email !=null">
+			and email like concat('%', #{email} ,'%')
+		</if>
+		<if test="phone != '' and phone !=null">
+			and phone like concat('%', #{phone} ,'%')
+		</if>
 		ORDER BY create_date DESC
 
 	</select>

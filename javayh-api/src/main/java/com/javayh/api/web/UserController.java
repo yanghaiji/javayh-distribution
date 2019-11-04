@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.javayh.common.util.DataResult;
 import com.javayh.common.util.MD5Util;
 import com.javayh.conf.dto.SysUserDTO;
+import com.javayh.conf.dto.SysUserSerchDTO;
 import com.javayh.conf.dto.UserModfiyPwdDTO;
 import com.javayh.conf.entity.SysUser;
 import com.javayh.conf.service.UserService;
@@ -48,9 +49,10 @@ public class UserController {
      * @return java.lang.String
      */
     @GetMapping("/alluser_admin")
-    public String getAllUser(@RequestParam(value = "pn", defaultValue = "1") Integer pn, Model model) {
+    public String getAllUser(@RequestParam(value = "pn", defaultValue = "1") Integer pn,
+                             SysUserSerchDTO dto, Model model) {
         PageHelper.startPage(pn, 4);
-        List<SysUser> u_list = userService.getAllPageUser();
+        List<SysUser> u_list = userService.getAllPageUser(dto);
         PageInfo<SysUser> page = new PageInfo<>(u_list, 3);
         model.addAttribute("pageInfo", page);
         return "user/users";
