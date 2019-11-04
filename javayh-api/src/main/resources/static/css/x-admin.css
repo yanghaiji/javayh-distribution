@@ -50,7 +50,7 @@
 .x-body{padding:20px}
 .x-nav{padding:0 20px;position:relative;z-index:99;border-bottom:1px solid #e5e5e5;line-height:39px;height:39px;overflow:hidden}
 .x-center{text-align:center;margin:0 auto}
-xblock{display:block;margin-bottom:10px;padding:5px;line-height:22px;border-radius:0 2px 2px 0;background-color:#f2f2f2}
+xblock{display:block;margin-bottom:10px;padding: 2px;line-height:22px;border-radius:0 2px 2px 0;background-color:#f2f2f2;}
 .x-right{float:right}
 .x-red{color:red}
 
