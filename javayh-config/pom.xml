@@ -5,12 +5,12 @@
     <parent>
         <groupId>com.javayh</groupId>
         <artifactId>javayh-distribution</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>com.javayh</groupId>
     <artifactId>javayh-config</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${javayh-distribution}</version>
     <name>javayh-config</name>
     <description>javayh-config</description>
     <packaging>jar</packaging>
@@ -22,7 +22,7 @@
         <dependency>
             <groupId>com.javayh</groupId>
             <artifactId>javayh-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${javayh-distribution}</version>
         </dependency>
     </dependencies>
 
