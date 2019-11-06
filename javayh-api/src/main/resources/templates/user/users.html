@@ -179,21 +179,7 @@
             , url: basePath+'/javayh/alluser_admin?userName=' +userName +'&email='+email  +'&phone='+phone,
         });
         return false;
-        laypage({
-            cont: 'page'
-            ,pages: [[${pageInfo.pages }]]
-            ,curr: [[${pageInfo.pageNum }]]
-            ,first: '首页'
-            ,last: '尾页'
-            ,prev: '<em><</em>'
-            ,next: '<em>></em>'
-            ,jump : function(obj, first){
-                if (!first) {
-                    var pn=obj.curr;
-                    window.location.href="/javayh/alluser_admin?pn="+pn;//跳转链接
-                }
-            }
-        });
+
     });
 </script>
 

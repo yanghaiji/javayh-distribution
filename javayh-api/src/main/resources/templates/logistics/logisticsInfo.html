@@ -149,21 +149,6 @@
             , url: basePath+'/javayh/logistics_info?addresseeName=' +addresseeName +'&senderName='+senderName  +'&emsStatus='+emsStatus +'&retreatStatus='+retreatStatus,
         });
         return false;
-        laypage({
-            cont: 'page'
-            ,pages: [[${pageInfo.pages }]]
-            ,curr: [[${pageInfo.pageNum }]]
-            ,first: '首页'
-            ,last: '尾页'
-            ,prev: '<em><</em>'
-            ,next: '<em>></em>'
-            ,jump : function(obj, first){
-                if (!first) {
-                    var pn=obj.curr;
-                    window.location.href="/javayh/logistics_info?pn="+pn;//跳转链接
-                }
-            }
-        });
     });
 </script>
 
