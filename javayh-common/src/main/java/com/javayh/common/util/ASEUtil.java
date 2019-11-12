@@ -92,8 +92,8 @@ public class ASEUtil {
 		return result;
 	}
 
-	public static void main(String[] args) throws BadPaddingException, IllegalBlockSizeException {
-		String admin = encryData("admin");
-		System.out.println(admin);
-	}
+//	public static void main(String[] args) throws BadPaddingException, IllegalBlockSizeException {
+//		String admin = encryData("admin");
+//		System.out.println(admin);
+//	}
 }
