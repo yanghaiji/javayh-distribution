@@ -1,5 +1,6 @@
 package com.javayh.conf.mvc;
 
+import com.javayh.common.util.ASEUtil;
 import com.javayh.common.util.MD5Util;
 import com.javayh.conf.service.MyUserDetailService;
 import org.springframework.context.annotation.Bean;
@@ -39,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			}
 			@Override
 			public String encode(CharSequence rawPassword) {
-				return MD5Util.encode((String) rawPassword);
+				return ASEUtil.encryData((String) rawPassword);
 			}
 		});
 		
