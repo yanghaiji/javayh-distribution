@@ -9,6 +9,9 @@ import com.javayh.conf.dto.SysUserSerchDTO;
 import com.javayh.conf.dto.UserModfiyPwdDTO;
 import com.javayh.conf.entity.SysUser;
 import com.javayh.conf.service.UserService;
+import com.javayh.conf.util.log.ApplicationType;
+import com.javayh.conf.util.log.OperationType;
+import com.javayh.conf.util.log.WebLogAspect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,6 +38,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/adduser")
+    @WebLogAspect(detail = "来到添加用户页面", operationType = OperationType.PAGE, applicationType = ApplicationType.WEB)
     public String touser() {
         return "user/register";
     }
@@ -49,6 +53,7 @@ public class UserController {
      * @return java.lang.String
      */
     @GetMapping("/alluser_admin")
+    @WebLogAspect(detail = "查询用户信息", operationType = OperationType.SELECT, applicationType = ApplicationType.WEB)
     public String getAllUser(@RequestParam(value = "pn", defaultValue = "1") Integer pn,
                              SysUserSerchDTO dto, Model model) {
         PageHelper.startPage(pn, 4);
@@ -68,6 +73,7 @@ public class UserController {
      */
     @PostMapping("/saveUser")
     @ResponseBody
+    @WebLogAspect(detail = "新增用户", operationType = OperationType.INSERT, applicationType = ApplicationType.WEB)
     public DataResult addUser(SysUser user) {
         int i = userService.saveUser(user);
         return i == 1 ?DataResult.success():DataResult.error();
@@ -83,6 +89,7 @@ public class UserController {
      * @return java.lang.String
      */
     @GetMapping("/user")
+    @WebLogAspect(detail = "得到用户个人信息", operationType = OperationType.SELECT, applicationType = ApplicationType.WEB)
     public String getUser(@RequestParam("username")String username,Model model) {
         SysUserDTO user=userService.getUserByName(username);
         model.addAttribute("user", user);
@@ -99,6 +106,7 @@ public class UserController {
      * @return java.lang.String
      */
     @RequestMapping("/toUpdatepage")
+    @WebLogAspect(detail = "更新数据回显", operationType = OperationType.SELECT, applicationType = ApplicationType.WEB)
     public String toUpdatePage(@RequestParam("username")String username,Model model) {
         SysUserDTO user=userService.getUserByName(username);
         model.addAttribute("user", user);
@@ -115,6 +123,7 @@ public class UserController {
      */
     @PutMapping("/userUpdate")
     @ResponseBody
+    @WebLogAspect(detail = "修改用户信息", operationType = OperationType.UPDATE, applicationType = ApplicationType.WEB)
     public DataResult updateUser(SysUser user) {
         userService.updateUser(user);
         return DataResult.success();
@@ -130,6 +139,7 @@ public class UserController {
      */
     @DeleteMapping(value = "delete")
     @ResponseBody
+    @WebLogAspect(detail = "删除用户", operationType = OperationType.DELETE, applicationType = ApplicationType.WEB)
     public DataResult delete(int id) {
         userService.delete(id);
         return DataResult.success();
@@ -145,6 +155,7 @@ public class UserController {
      */
     @PutMapping("/updatePwd")
     @ResponseBody
+    @WebLogAspect(detail = "修改密码", operationType = OperationType.UPDATE, applicationType = ApplicationType.WEB)
     public DataResult updateUserPwd(UserModfiyPwdDTO user) {
         int i = userService.updateUserPwd(user);
         return i == 0 ? DataResult.error(): DataResult.success();

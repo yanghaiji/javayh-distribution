@@ -5,6 +5,9 @@ import com.javayh.conf.service.MyUserDetailService;
 import com.javayh.conf.service.SysMenuService;
 import com.javayh.conf.service.UserService;
 import com.javayh.conf.util.UserUtils;
+import com.javayh.conf.util.log.ApplicationType;
+import com.javayh.conf.util.log.OperationType;
+import com.javayh.conf.util.log.WebLogAspect;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.session.SessionRegistry;
@@ -24,22 +27,25 @@ public class LoginController {
 	private SessionRegistry sessionRegistry;
 	@Autowired
 	private SysMenuService sysMenuService;
+	@Autowired
+	private HttpServletRequest request;
+	@Autowired
+	private HttpServletResponse response;
 
 	/**
 	 * @Description 登录
 	 * @UserModule: exam-web-paper
 	 * @author Dylan
 	 * @date 2019/10/30
-	 * @param request
-	 * @param response
 	 * @param model
 	 * @return java.lang.String
 	 */
 	@RequestMapping("/index")
-	public String index(HttpServletRequest request,HttpServletResponse response,Model model) {
+	@WebLogAspect(detail = "Java有货登录", operationType = OperationType.LOGIN, applicationType = ApplicationType.WEB)
+	public String index(Model model) {
 		response.setContentType("application/json");
 		String username=request.getUserPrincipal().getName();
-		List<TreeNode> list = sysMenuService.findList(UserUtils.getRoleId(request));
+		List<TreeNode> list = sysMenuService.findList(UserUtils.getRoleId());
 		log.info("登录用户{}",username);
 		model.addAttribute("menulist", list);
 		model.addAttribute("username", username);
@@ -49,11 +55,11 @@ public class LoginController {
 
 	/**
 	 * 注销时直接从sessionRegistry中移除请求中储存的sessionid
-	 * @param request
 	 * @return
 	 */
 	@RequestMapping("/mylogout")
-	public String logout2(HttpServletRequest request) {
+	@WebLogAspect(detail = "Java有货退出登录", operationType = OperationType.LOGOUT, applicationType = ApplicationType.WEB)
+	public String logout2() {
 		String sessionid=request.getRequestedSessionId();
 		sessionRegistry.removeSessionInformation(sessionid);
 		return "redirect:/login";
