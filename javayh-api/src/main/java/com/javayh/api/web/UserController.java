@@ -53,7 +53,7 @@ public class UserController {
      * @return java.lang.String
      */
     @GetMapping("/alluser_admin")
-    @WebLogAspect(detail = "查询用户信息", operationType = OperationType.SELECT, applicationType = ApplicationType.WEB)
+//    @WebLogAspect(detail = "查询用户信息", operationType = OperationType.SELECT, applicationType = ApplicationType.WEB)
     public String getAllUser(@RequestParam(value = "pn", defaultValue = "1") Integer pn,
                              SysUserSerchDTO dto, Model model) {
         PageHelper.startPage(pn, 4);

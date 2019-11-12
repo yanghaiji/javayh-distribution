@@ -43,7 +43,7 @@ public class LogisticsController {
      * @return java.lang.String
      */
     @GetMapping("/logistics_info")
-    @WebLogAspect(detail = "查询物流信息", operationType = OperationType.SELECT, applicationType = ApplicationType.WEB)
+//    @WebLogAspect(detail = "查询物流信息", operationType = OperationType.SELECT, applicationType = ApplicationType.WEB)
     public String getAllUser(@RequestParam(value = "pn", defaultValue = "1") Integer pn,
                              LogisticsInfoSerchDTO dto, Model model) {
         PageHelper.startPage(pn, 4);
