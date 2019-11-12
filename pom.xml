@@ -27,6 +27,7 @@
 		<tk.mybatis.version>RELEASE</tk.mybatis.version>
 		<javayh-distribution>1.0</javayh-distribution>
 		<ratelimitj.version>0.4.1</ratelimitj.version>
+		<logstash.version>5.1</logstash.version>
 	</properties>
 	<modules>
 		<module>javayh-common</module>
@@ -97,6 +98,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.logstash.logback</groupId>
+			<artifactId>logstash-logback-encoder</artifactId>
+			<version>${logstash.version}</version>
 		</dependency>
 	</dependencies>
 

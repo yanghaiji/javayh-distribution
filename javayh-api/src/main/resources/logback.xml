@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="consoleAppender"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<!-- <Pattern>%d{YYYY-MM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) 
+				%cyan(%logger{36}.%M:%line) - %msg %n </Pattern> -->
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} -
+				%msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>TRACE</level>
+		</filter>
+	</appender>
+
+	<appender name="dailyRollingFileAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<FileNamePattern>${LOG_PATH}/${LOG_FILE}.%d{yyyy-MM-dd}.log
+			</FileNamePattern>
+
+			<!-- keep 100 days' worth of history -->
+			<maxHistory>100</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} -
+				%msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+
+	<appender name="errDailyRollingFileAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>WARN</level>
+		</filter>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<FileNamePattern>${LOG_PATH}/err/${LOG_FILE}.%d{yyyy-MM-dd}.log
+			</FileNamePattern>
+
+			<!-- keep 100 days' worth of history -->
+			<maxHistory>100</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} -
+				%msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+	<appender name="logstashAppender"
+		class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+		<destination>192.168.42.31:9992</destination>
+		<!-- encoder is required -->
+		<encoder charset="UTF-8"
+			class="net.logstash.logback.encoder.LogstashEncoder">
+			<customFields>{"logenv":"dev","appname":"exam-paper"}
+			</customFields>
+		</encoder>
+	</appender>
+	<root level="INFO">
+		<appender-ref ref="consoleAppender" />
+		<appender-ref ref="dailyRollingFileAppender" />
+		<appender-ref ref="errDailyRollingFileAppender" />
+		<appender-ref ref="logstashAppender" />
+	</root>
+
+	<!-- <root> <level value="WARN" /> <appender-ref ref="errDailyRollingFileAppender" 
+		/> </root> -->
+</configuration>
