@@ -183,5 +183,5 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', 'admin', '3fa3886a9be344ce7cf66ba200955795', '活跃', '1215618321@qq.com', '11111111111', '2018-07-24', '2019-11-02', '0', '0', '0');
+INSERT INTO `sys_user` VALUES ('1', 'admin', 'x6xCL6sRiGptPpwphBAFBA==', '活跃', '1215618321@qq.com', '11111111111', '2018-07-24', '2019-11-02', '0', '0', '0');
 INSERT INTO `sys_user` VALUES ('36', 'yanghj', '51f47f80d6928a650f2ce6ec474bb500', '活跃', '1111@qq.com', '11111111111', '2019-11-02', '2019-11-02', '0', '0', '0');
