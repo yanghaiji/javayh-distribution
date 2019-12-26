@@ -1,6 +1,5 @@
 package com.javayh.conf.dto;
 
-import com.javayh.conf.entity.Role;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -28,5 +27,5 @@ public class SysUserDTO implements Serializable {
     /*0 正常 1 锁定*/
     private Integer status;
     private Integer tryCount;
-    private Set<RoleDTO> roles=new HashSet<>();
+    private Set<RoleDTO> roles = new HashSet<>();
 }
