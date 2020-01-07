@@ -4,6 +4,8 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.javayh.common.util.DataResult;
 import com.javayh.common.util.MD5Util;
+import com.javayh.conf.aop.OperationType;
+import com.javayh.conf.aop.WebLogAspect;
 import com.javayh.conf.dto.SysUserDTO;
 import com.javayh.conf.dto.SysUserSerchDTO;
 import com.javayh.conf.dto.UserModfiyPwdDTO;
@@ -68,6 +70,7 @@ public class UserController {
      */
     @PostMapping("/saveUser")
     @ResponseBody
+    @WebLogAspect(detail = "新增用户",level = 2,operationType = OperationType.SELECT)
     public DataResult addUser(SysUser user) {
         int i = userService.saveUser(user);
         return i == 1 ?DataResult.success():DataResult.error();
