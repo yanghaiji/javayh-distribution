@@ -3,15 +3,11 @@ package com.javayh.api.web;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.javayh.common.util.DataResult;
-import com.javayh.common.util.MD5Util;
-import com.javayh.conf.aop.OperationType;
-import com.javayh.conf.aop.WebLogAspect;
 import com.javayh.conf.dto.SysUserDTO;
 import com.javayh.conf.dto.SysUserSerchDTO;
 import com.javayh.conf.dto.UserModfiyPwdDTO;
 import com.javayh.conf.entity.SysUser;
 import com.javayh.conf.service.UserService;
-import com.javayh.conf.util.log.ApplicationType;
 import com.javayh.conf.util.log.OperationType;
 import com.javayh.conf.util.log.WebLogAspect;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -73,6 +68,7 @@ public class UserController {
      */
     @PostMapping("/saveUser")
     @ResponseBody
+    @WebLogAspect(detail = "新增用户",level = 2,operationType = OperationType.SELECT)
     public DataResult addUser(SysUser user) {
         int i = userService.saveUser(user);
         return i == 1 ?DataResult.success():DataResult.error();
