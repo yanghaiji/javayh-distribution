@@ -82,7 +82,6 @@ public class LogAspect {
      * @return void
      */
     private void addLogAspect(ProceedingJoinPoint joinPoint,Object proceed,long time){
-//        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         //判断返回值是否为空
         if(!ObjectUtils.allNotNull()){
             proceed = DataResult.error();

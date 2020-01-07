@@ -1,11 +1,8 @@
 package com.javayh.api.web;
 
 import com.javayh.common.tree.TreeNode;
-import com.javayh.conf.aop.OperationType;
-import com.javayh.conf.aop.WebLogAspect;
 import com.javayh.conf.service.SysMenuService;
 import com.javayh.conf.util.UserUtils;
-import com.javayh.conf.util.log.ApplicationType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.session.SessionRegistry;
