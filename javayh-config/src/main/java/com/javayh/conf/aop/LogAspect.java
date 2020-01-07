@@ -52,8 +52,6 @@ public class LogAspect {
     }
 
     private void addLogAspect(ProceedingJoinPoint joinPoint, Object proceed, long time) {
-        HttpServletRequest request =
-                ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
         OperationLog operationLog = new OperationLog();
         //消耗的时间
@@ -80,7 +78,7 @@ public class LogAspect {
             //操作单元
             operationLog.setOperationUnit(annotation.operationUnit().getValue());
             //操作有货
-            operationLog.setUserName(UserUtils.getUserName(request));
+            operationLog.setUserName(UserUtils.getUserName());
         }
         log.info("AOP日志输出为: " + operationLog);
         //进行日志的保存
