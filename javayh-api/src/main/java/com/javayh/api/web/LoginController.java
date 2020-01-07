@@ -3,13 +3,9 @@ package com.javayh.api.web;
 import com.javayh.common.tree.TreeNode;
 import com.javayh.conf.aop.OperationType;
 import com.javayh.conf.aop.WebLogAspect;
-import com.javayh.conf.service.MyUserDetailService;
 import com.javayh.conf.service.SysMenuService;
-import com.javayh.conf.service.UserService;
 import com.javayh.conf.util.UserUtils;
 import com.javayh.conf.util.log.ApplicationType;
-import com.javayh.conf.util.log.OperationType;
-import com.javayh.conf.util.log.WebLogAspect;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.session.SessionRegistry;
@@ -43,7 +39,6 @@ public class LoginController {
 	 * @return java.lang.String
 	 */
 	@RequestMapping("/index")
-	@WebLogAspect(detail = "Java有货登录", operationType = OperationType.LOGIN, applicationType = ApplicationType.WEB)
 	public String index(Model model) {
 		response.setContentType("application/json");
 		String username=request.getUserPrincipal().getName();
@@ -60,7 +55,6 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping("/mylogout")
-	@WebLogAspect(detail = "Java有货退出登录", operationType = OperationType.LOGOUT, applicationType = ApplicationType.WEB)
 	public String logout2() {
 		String sessionid=request.getRequestedSessionId();
 		sessionRegistry.removeSessionInformation(sessionid);
