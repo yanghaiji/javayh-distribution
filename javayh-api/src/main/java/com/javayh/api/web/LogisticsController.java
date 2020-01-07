@@ -6,6 +6,9 @@ import com.javayh.conf.dto.LogisticsInfoSerchDTO;
 import com.javayh.conf.entity.Logistics;
 import com.javayh.conf.entity.SysUser;
 import com.javayh.conf.service.LogisticsService;
+import com.javayh.conf.util.log.ApplicationType;
+import com.javayh.conf.util.log.OperationType;
+import com.javayh.conf.util.log.WebLogAspect;
 import com.javayh.conf.vo.LogisticsVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +34,7 @@ public class LogisticsController {
     @Autowired
     private LogisticsService logisticsService;
     /**
-     * @Description 查询用户信息  后期需要在改
+     * @Description 查询物流信息  后期需要在改
      * @UserModule: javayh-distribution
      * @author Dylan
      * @date 2019/10/31
@@ -40,6 +43,7 @@ public class LogisticsController {
      * @return java.lang.String
      */
     @GetMapping("/logistics_info")
+//    @WebLogAspect(detail = "查询物流信息", operationType = OperationType.SELECT, applicationType = ApplicationType.WEB)
     public String getAllUser(@RequestParam(value = "pn", defaultValue = "1") Integer pn,
                              LogisticsInfoSerchDTO dto, Model model) {
         PageHelper.startPage(pn, 4);

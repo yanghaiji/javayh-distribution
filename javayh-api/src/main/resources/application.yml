@@ -27,3 +27,7 @@ mybatis:
 logging:
   level:
     com.javayh.conf.mapper: DEBUG
+  config:
+    classpath: logback.xml
+  file: javayh
+  path : D:\log

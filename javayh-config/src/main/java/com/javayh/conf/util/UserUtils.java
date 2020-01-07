@@ -3,9 +3,14 @@ package com.javayh.conf.util;
 import com.javayh.common.util.SpringContextHolder;
 import com.javayh.conf.mapper.UserMapper;
 import com.javayh.conf.vo.UserNameRoleVO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.management.relation.Role;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
+import javax.xml.ws.WebServiceContext;
 import java.util.List;
 
 /**
@@ -24,10 +29,10 @@ public class UserUtils {
      * @UserModule: exam-web-paper       
      * @author Dylan
      * @date 2019/10/30
-     * @param request 
      * @return java.lang.String
      */
-    public static String getUserName(HttpServletRequest request){
+    public static String getUserName(){
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         String username=request.getUserPrincipal().getName();
         return username;
     }
@@ -37,11 +42,10 @@ public class UserUtils {
      * @UserModule: exam-web-paper       
      * @author Dylan
      * @date 2019/10/30
-     * @param request 
      * @return java.util.List<com.javayh.conf.vo.UserNameRoleVO>
      */
-    public static List<UserNameRoleVO>  getRole(HttpServletRequest request){
-        String userName = getUserName(request);
+    public static List<UserNameRoleVO>  getRole(){
+        String userName = getUserName();
         List<UserNameRoleVO> userNameRoleVOS = userMapper.selectRoleByName(userName);
         return userNameRoleVOS;
     }
@@ -51,11 +55,10 @@ public class UserUtils {
      * @UserModule: exam-web-paper       
      * @author Dylan
      * @date 2019/10/30
-     * @param request 
      * @return java.util.List<java.lang.String>
      */
-    public static List<String>  getRoleId(HttpServletRequest request){
-        String userName = getUserName(request);
+    public static List<String>  getRoleId(){
+        String userName = getUserName();
         List<String> userNameRoleVOS = userMapper.selectRoleIdByName(userName);
         return userNameRoleVOS;
     }
